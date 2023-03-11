@@ -1,0 +1,363 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public abstract class OvoDePascoaFactory {
+    abstract OvoDePascoa CriarOvoDePascoa(char ovo);
+    
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Talento implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Talento - Peso: 350g, Embalagem: Dourada/preto, Recheio: Talento AvelÃ£, Valor: R$ 64,90, Fabricante: Garoto");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class SonhoDeValsa implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Sonho de Valsa - Peso: 277g, Embalagem: Rosa, Recheio: Bom Bom sonho de valsa, Valor: R$ 55,90, Fabricante: Lacta");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public interface OvoDePascoa {
+    public void exibirOvoDePascoa();
+    
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Oreo implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Oreo - Peso: 257g, Embalagem: Azul, Recheio: Oreo, Valor: R$ 42,90, Fabricante: Lacta");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Nestle extends OvoDePascoaFactory{
+
+    @Override
+	OvoDePascoa CriarOvoDePascoa(char ovo) {
+
+		if(ovo == '1') {
+			return new Alpino();
+		}else if(ovo == '2') {
+			return new Classic();
+		}
+		return new KitKat();
+	}
+    
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Lacta extends OvoDePascoaFactory{
+    @Override
+	OvoDePascoa CriarOvoDePascoa(char ovo) {
+		
+		if(ovo == '1') {
+			return new AoLeite();
+		}else if(ovo == '2') {
+			return new Oreo();
+		}
+		return new SonhoDeValsa();
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class KitKat implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Kit Kat - Peso: 227g, Embalagem: Vermelho/branco, Recheio: kit kat, Valor: R$ 49,90, Fabricante: Nestle");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Garoto extends OvoDePascoaFactory{
+    @Override
+	OvoDePascoa CriarOvoDePascoa(char ovo) {
+		
+		if(ovo == '1') {
+			return new Crocante();
+		} else if (ovo == '2') {
+			return new Talento();
+		}
+		return new BatonAoLeite();
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+import javax.swing.*;
+
+/**
+ *
+ * @author Aluno
+ */
+public class DistribuidoraOvosPascoa {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        char Codigo_ovo;
+        char Codigo_Fabrica;
+
+
+        Codigo_Fabrica =  JOptionPane.showInputDialog("Entre com o codigo da Fabrica").charAt(0);
+        Codigo_ovo = JOptionPane.showInputDialog("Entre com o codigo do ovo").charAt(0);
+
+
+
+        if((Codigo_Fabrica == '1')&&(Codigo_ovo == '1')){
+            OvoDePascoaFactory pascoa = new Nestle();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('1');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '1')&&(Codigo_ovo == '2')){
+        	 OvoDePascoaFactory pascoa = new Nestle();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('2');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '1')&&(Codigo_ovo == '3')){
+        	 OvoDePascoaFactory pascoa = new Nestle();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('3');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '2')&&(Codigo_ovo == '1')){
+        	 OvoDePascoaFactory pascoa = new Garoto();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('1');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '2')&&(Codigo_ovo == '2')){
+        	 OvoDePascoaFactory pascoa = new Garoto();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('2');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '2')&&(Codigo_ovo == '3')){
+        	 OvoDePascoaFactory pascoa = new Garoto();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('3');
+            ovo.exibirOvoDePascoa();
+        }
+
+
+          if((Codigo_Fabrica == '3')&&(Codigo_ovo == '1')){
+        	  OvoDePascoaFactory pascoa = new Lacta();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('1');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '3')&&(Codigo_ovo == '2')){
+        	 OvoDePascoaFactory pascoa = new Lacta();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('2');
+            ovo.exibirOvoDePascoa();
+        }
+
+         if((Codigo_Fabrica == '3')&&(Codigo_ovo == '3')){
+        	 OvoDePascoaFactory pascoa = new Lacta();
+
+            OvoDePascoa ovo = pascoa.CriarOvoDePascoa('3');
+            ovo.exibirOvoDePascoa();
+        }
+
+
+
+    }
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Crocante implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Crocante - Peso: 215g, Embalagem: vermelha e amarela, Recheio: bombom, Valor: R$ 43,99, Fabricante: Garoto");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Classic implements OvoDePascoa{
+
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Classic - Peso: 185g, Embalagem: Vermelha, Recheio: Chocolate, Valor: R$ 39,90, Fabricante: Nestle");
+		
+	}
+    
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class BatonAoLeite implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Ao Leite - Peso: 172g, Embalagem: Vermelha, Recheio: Chocolate Branco, Valor: R$ 49,90, Fabricante: Nestle");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class AoLeite implements OvoDePascoa{
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Ao leite - Peso: 170g, Embalagem: Azul, Recheio: Creme de avelÃ£, Valor: R$ 42,90 Fabricante: Lacta");
+		
+	}
+}
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package distribuidoraovospascoa;
+
+/**
+ *
+ * @author Aluno
+ */
+public class Alpino implements OvoDePascoa{
+
+    @Override
+	public void exibirOvoDePascoa() {
+		System.out.println("Ovo de pascoa Alpino - Peso: 337g, Embalagem: Dourada, Recheio: Bom Bom, Valor: R$ 56,90, Fabricante: Nestle");
+		
+	}
+    
+    
+}
