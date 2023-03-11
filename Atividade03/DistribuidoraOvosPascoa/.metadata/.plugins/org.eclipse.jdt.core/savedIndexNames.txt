@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+I:\PADRÕES DE PROJETO\DistribuidoraOvosPascoa\.metadata\.plugins\org.eclipse.jdt.core
-2334959001.index
